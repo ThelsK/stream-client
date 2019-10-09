@@ -1,7 +1,10 @@
+import { SET_MESSAGE } from "./message"
+
 export const CLEAR_WEBSOCKET = "CLEAR_WEBSOCKET"
 export const SET_WEBSOCKET = "SET_WEBSOCKET"
 export const SET_USERNAME = "SET_USERNAME"
 export const SET_DEVICENAME = "SET_DEVICENAME"
+export const SET_STREAMS = "SET_STREAMS"
 
 export const clearWebSocket = () => dispatch =>
   dispatch({
@@ -15,8 +18,21 @@ export const setWebSocket = webSocket => dispatch =>
   })
 
 export const receiveMessage = data => dispatch => {
-  switch (data.type) {
+  if (data.message) {
+    dispatch({
+      type: SET_MESSAGE,
+      payload: data.message,
+    })
+  }
 
+  if (data.streams) {
+    dispatch({
+      type: SET_STREAMS,
+      payload: data.streams,
+    })
+  }
+
+  switch (data.type) {
     case "message":
       return
 
@@ -35,6 +51,6 @@ export const receiveMessage = data => dispatch => {
       return
 
     default:
-      console.error("Unknown data received:", data)
+      console.error("Unknown data:", data)
   }
 }

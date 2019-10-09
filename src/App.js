@@ -1,14 +1,12 @@
 import React from "react"
 
 import WebSocket from "./views/WebSocket"
-import Login from "./views/Login"
-import CaptureStream from "./views/CaptureStream"
-import PlayStream from "./views/PlayStream"
+import Display from "./views/Display"
+import Message from "./views/Message"
 
 export default () =>
   <main className="main" >
     <WebSocket />
-    <Login />
-    <CaptureStream />
-    <PlayStream />
+    <Display />
+    <Message />
   </main>

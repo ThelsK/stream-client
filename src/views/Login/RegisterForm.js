@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 
-import Label from "./Label"
+import Label from "../Label"
 
 class Component extends React.Component {
   state = { username: "", password: "", confirmPassword: "" }

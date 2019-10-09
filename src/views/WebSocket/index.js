@@ -1,33 +1,38 @@
 import React from "react"
 import { connect } from "react-redux"
 
+import Connecting from "./Connecting"
+import Closed from "./Closed"
+import Error from "./Error"
+import { baseUrl } from "../../settings"
 import { clearWebSocket, setWebSocket, receiveMessage }
   from "../../actions/webSocket"
 
 class Component extends React.Component {
-  state = { connection: "" }
+  state = { status: "new" }
 
   webSocket = {}
 
   connectWebSocket = () => {
-    this.setState({ connection: "connecting" })
-    this.webSocket = new WebSocket("ws://localhost:6789", "json")
+    this.props.clearWebSocket()
+    this.setState({ status: "connecting" })
+    this.webSocket = new WebSocket(baseUrl, "json")
 
     this.webSocket.onclose = () => {
-      this.setState({ connection: "closed" })
       this.props.clearWebSocket()
+      this.setState({ status: "closed" })
     }
 
     this.webSocket.onerror = () => {
-      this.setState({ connection: "error" })
       this.props.clearWebSocket()
+      this.setState({ status: "error" })
     }
 
     this.webSocket.onmessage = msg =>
       this.props.receiveMessage(JSON.parse(msg.data))
 
     this.webSocket.onopen = () => {
-      this.setState({ connection: "open" })
+      this.setState({ status: "open" })
       this.props.setWebSocket(this.webSocket)
     }
   }
@@ -37,27 +42,16 @@ class Component extends React.Component {
   }
 
   render() {
-    if (this.state.connection === "connecting") {
-      return <div>
-        <h1>Connecting to server...</h1>
-      </div>
+    switch (this.state.status) {
+      case "connecting":
+        return <Connecting reconnect={this.connectWebSocket} />
+      case "closed":
+        return <Closed reconnect={this.connectWebSocket} />
+      case "error":
+        return <Error reconnect={this.connectWebSocket} />
+      default:
+        return null
     }
-
-    if (this.state.connection === "closed") {
-      return <div>
-        <h1>The server closed the connection.</h1>
-        <button onClick={this.connectWebSocket}>Reconnect</button>
-      </div>
-    }
-
-    if (this.state.connection === "error") {
-      return <div>
-        <h1>An error occured with the server connection.</h1>
-        <button onClick={this.connectWebSocket}>Reconnect</button>
-      </div>
-    }
-
-    return null
   }
 }
 

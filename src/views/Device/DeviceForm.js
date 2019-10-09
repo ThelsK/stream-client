@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import Label from "../Label"
 
 class Component extends React.Component {
-  state = { username: "", password: "" }
+  state = { devicename: "" }
 
   onChange = event =>
     this.setState({ [event.target.name]: event.target.value })
@@ -12,36 +12,25 @@ class Component extends React.Component {
   onSubmit = event => {
     event.preventDefault()
     this.props.webSocket.send(JSON.stringify({
-      ...this.state, type: "login",
+      ...this.state, type: "device",
     }))
   }
 
   render() {
     return <form className="form" onSubmit={this.onSubmit}>
       <Label
-        text="Username:"
+        text="Devicename:"
         type="text"
-        name="username"
-        placeholder="Enter username..."
-        value={this.state.username}
+        name="devicename"
+        placeholder="Enter devicename..."
+        value={this.state.devicename}
         minLength={3}
         maxLength={24}
         required={true}
         onChange={this.onChange}
       />
-      <Label
-        text="Password:"
-        type="password"
-        name="password"
-        placeholder="Enter password..."
-        value={this.state.password}
-        minLength={8}
-        maxLength={100}
-        required={true}
-        onChange={this.onChange}
-      />
       <div className="buttonbox">
-        <button className="button">Log in</button>
+        <button className="button">Submit</button>
       </div>
     </form >
   }

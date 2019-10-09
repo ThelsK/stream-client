@@ -1,7 +1,7 @@
 import React from "react"
 
-export default props => {
-  return <label className={"label"}>
+export default props =>
+  <label className={"label"}>
     {props.text}
     <input
       className={"input"}
@@ -15,4 +15,3 @@ export default props => {
       onChange={props.onChange}
     />
   </label>
-}
