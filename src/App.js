@@ -1,8 +1,8 @@
 import React from "react"
 
+import CaptureScreen from "./views/CaptureScreen"
+
 export default () =>
   <main className="main" >
-    <div className="App">
-      Hello World
-    </div>
+    <CaptureScreen />
   </main>
