@@ -4,7 +4,6 @@ import { connect } from "react-redux"
 import { setStream, clearStream } from "../../actions/stream"
 
 class Component extends React.Component {
-  videoRef = React.createRef()
 
   startCapture = async () => {
     try {
@@ -19,30 +18,19 @@ class Component extends React.Component {
 
   }
 
-  componentDidMount() {
-    this.videoRef.current.srcObject = this.props.stream
-  }
-
-  componentDidUpdate() {
-    this.videoRef.current.srcObject = this.props.stream
-  }
-
   render() {
-
-    return <div className="CaptureScreen">
+    return <div className="CaptureStream">
       <button className="button" onClick={this.startCapture}>
         Start Capture
       </button>
       <button className="button" onClick={this.stopCapture}>
         Stop Capture
       </button>
-      <video className="video" ref={this.videoRef} autoPlay controls />
     </div>
   }
 }
 
-const mapStateToProps = state =>
-  ({ stream: state.stream })
+const mapStateToProps = state => ({})
 
 const mapDispatchToProps = { setStream, clearStream }
 
