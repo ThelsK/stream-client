@@ -1,10 +1,10 @@
-import { CLEAR_STREAM, SET_STREAM } from "../actions/stream"
+import { CLEAR_WEBSOCKET, SET_WEBSOCKET } from "../actions/webSocket"
 
 export default (state = null, action = {}) => {
   switch (action.type) {
-    case CLEAR_STREAM:
+    case CLEAR_WEBSOCKET:
       return null
-    case SET_STREAM:
+    case SET_WEBSOCKET:
       return action.payload
     default:
       return state
