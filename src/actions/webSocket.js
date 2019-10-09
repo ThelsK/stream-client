@@ -5,6 +5,7 @@ export const SET_WEBSOCKET = "SET_WEBSOCKET"
 export const SET_USERNAME = "SET_USERNAME"
 export const SET_DEVICENAME = "SET_DEVICENAME"
 export const SET_STREAMS = "SET_STREAMS"
+export const SET_SIGNAL = "SET_SIGNAL"
 
 export const clearWebSocket = () => dispatch =>
   dispatch({
@@ -36,6 +37,9 @@ export const receiveMessage = data => dispatch => {
     case "message":
       return
 
+    case "streams":
+      return
+
     case "login":
       dispatch({
         type: SET_USERNAME,
@@ -47,6 +51,15 @@ export const receiveMessage = data => dispatch => {
       dispatch({
         type: SET_DEVICENAME,
         payload: data.devicename,
+      })
+      return
+
+    case "offer":
+    case "answer":
+    case "candidate":
+      dispatch({
+        type: SET_SIGNAL,
+        payload: data,
       })
       return
 

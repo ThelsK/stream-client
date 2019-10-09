@@ -2,11 +2,15 @@ import React from "react"
 import { connect } from "react-redux"
 
 import ListEntry from "./ListEntry"
+import { setStatus } from "../../actions/status"
+import { setHostdevice } from "../../actions/hostdevice"
 
 class Component extends React.Component {
 
-  watch = event =>
-    console.log("Watching:", [event.target.name])
+  watch = event => {
+    this.props.setHostdevice(event.target.name)
+    this.props.setStatus("watching")
+  }
 
   render() {
     return <div className="column">
@@ -20,6 +24,6 @@ class Component extends React.Component {
 
 const mapStateToProps = state => ({ streams: state.streams })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = { setStatus, setHostdevice }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)

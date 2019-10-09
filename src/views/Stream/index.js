@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 
+import Connection from "../Connection"
 import { clearStatus } from "../../actions/status"
 import { setStream, clearStream } from "../../actions/stream"
 
@@ -28,6 +29,7 @@ class Component extends React.Component {
 
   render() {
     return <div className="page">
+      <Connection />
       <h2>Streaming data</h2>
     </div>
   }
