@@ -1,17 +1,14 @@
 import React from "react"
+import { connect } from "react-redux"
+
+import { setStream, clearStream } from "../../actions/stream"
 
 class Component extends React.Component {
   videoRef = React.createRef()
 
-  state = {
-    stream: undefined,
-  }
-
   startCapture = async () => {
     try {
-      this.setState({
-        stream: await navigator.mediaDevices.getDisplayMedia({})
-      })
+      this.props.setStream(await navigator.mediaDevices.getDisplayMedia({}))
 
     } catch (error) {
       console.error(error)
@@ -23,11 +20,11 @@ class Component extends React.Component {
   }
 
   componentDidMount() {
-    this.videoRef.current.srcObject = this.state.stream
+    this.videoRef.current.srcObject = this.props.stream
   }
 
   componentDidUpdate() {
-    this.videoRef.current.srcObject = this.state.stream
+    this.videoRef.current.srcObject = this.props.stream
   }
 
   render() {
@@ -44,4 +41,9 @@ class Component extends React.Component {
   }
 }
 
-export default Component
+const mapStateToProps = state =>
+  ({ stream: state.stream })
+
+const mapDispatchToProps = { setStream, clearStream }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component)
