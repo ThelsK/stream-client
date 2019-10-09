@@ -3,22 +3,34 @@ import { connect } from "react-redux"
 
 import Login from "../Login"
 import Device from "../Device"
-import CaptureStream from "../CaptureStream"
-import PlayStream from "../PlayStream"
+import Overview from "../Overview"
+import Stream from "../Stream"
+import Watch from "../Watch"
 
 class Component extends React.Component {
 
   render() {
+
     if (!this.props.webSocket) {
       return null
     }
+
     if (!this.props.username) {
       return <Login />
     }
+
     if (!this.props.devicename) {
       return <Device />
     }
-    return null
+
+    switch (this.props.status) {
+      case "streaming":
+        return <Stream />
+      case "watching":
+        return <Watch />
+      default:
+        return <Overview />
+    }
   }
 }
 
@@ -26,6 +38,7 @@ const mapStateToProps = state => ({
   webSocket: state.webSocket,
   username: state.username,
   devicename: state.devicename,
+  status: state.status,
 })
 
 const mapDispatchToProps = {}

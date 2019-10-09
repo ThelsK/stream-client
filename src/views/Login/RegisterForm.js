@@ -17,7 +17,7 @@ class Component extends React.Component {
   }
 
   render() {
-    return <form className="form" onSubmit={this.onSubmit}>
+    return <form className="column" onSubmit={this.onSubmit}>
       <Label
         text="Username:"
         type="text"
