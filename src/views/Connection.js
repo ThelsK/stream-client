@@ -34,6 +34,7 @@ class Component extends React.Component {
       // Handle incoming stream.
       connection.onaddstream = event => {
         console.log("Add Stream:", event)
+        this.props.setStream(event.stream)
       }
 
       // Handle ICE candidates.
