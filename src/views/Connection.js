@@ -27,7 +27,6 @@ class Component extends React.Component {
 
       // Handle incoming stream.
       connection.onaddstream = event => {
-        console.log("Add Stream:", event)
         this.props.setStream(event.stream)
       }
 
@@ -42,6 +41,7 @@ class Component extends React.Component {
             type: "target", target: connection.otherDevicename,
             payload: { type: "candidate", candidate: event.candidate }
           }))
+          console.log("Connection:", connection)
         }
       }
 
@@ -63,7 +63,6 @@ class Component extends React.Component {
     if (!this.props.signal.type) {
       return
     }
-    console.log("Signal found.")
 
     // Find the connection to this device.
     let connection = this.connections.find(conn =>
@@ -87,7 +86,6 @@ class Component extends React.Component {
 
       // Handle incoming stream.
       connection.onaddstream = event => {
-        console.log("Add Stream:", event)
         this.props.setStream(event.stream)
       }
 
@@ -102,6 +100,7 @@ class Component extends React.Component {
             type: "target", target: connection.otherDevicename,
             payload: { type: "candidate", candidate: event.candidate }
           }))
+          console.log("Connection:", connection)
         }
       }
 
@@ -113,15 +112,15 @@ class Component extends React.Component {
 
       case "offer":
         console.log("Received offer")
-        connection.setRemoteDescription(new RTCSessionDescription(
-          this.props.signal.offer))
         connection.createAnswer(answer => {
-          connection.setLocalDescription(answer)
           this.props.webSocket.send(JSON.stringify({
             type: "target", target: connection.otherDevicename,
             payload: { type: "answer", answer }
           }))
+          connection.setLocalDescription(answer)
         }, console.error)
+        connection.setRemoteDescription(new RTCSessionDescription(
+          this.props.signal.offer))
         this.props.clearSignal()
         console.log("Connection:", connection)
         return
@@ -139,6 +138,7 @@ class Component extends React.Component {
         connection.addIceCandidate(new RTCIceCandidate(
           this.props.signal.candidate))
         this.props.clearSignal()
+        console.log("Connection:", connection)
         return
 
       default:
