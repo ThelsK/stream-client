@@ -36,8 +36,8 @@ class Component extends React.Component {
 
       // Handle ICE candidates.
       connection.onicecandidate = event => {
-        console.log("ICE Candidate:", event)
         if (event.candidate) {
+          console.log("Sending ICE candidate:", event.candidate)
           this.props.webSocket.send(JSON.stringify({
             type: "target", target: connection.otherDevicename,
             payload: { type: "candidate", candidate: event.candidate }
@@ -94,8 +94,8 @@ class Component extends React.Component {
 
       // Handle ICE candidates.
       connection.onicecandidate = event => {
-        console.log("ICE Candidate:", event)
         if (event.candidate) {
+          console.log("Sending ICE candidate:", event.candidate)
           this.props.webSocket.send(JSON.stringify({
             type: "target", target: connection.otherDevicename,
             payload: { type: "candidate", candidate: event.candidate }
@@ -133,6 +133,7 @@ class Component extends React.Component {
         return
 
       case "candidate":
+        console.log("Receiving ICE candidate:", this.props.signal.candidate)
         connection.addIceCandidate(new RTCIceCandidate(
           this.props.signal.candidate))
         this.props.clearSignal()
