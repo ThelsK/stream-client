@@ -98,3 +98,7 @@
   overflow: hidden;
   text-align: center;
 }
+
+video {
+  max-height: 75vh;
+}

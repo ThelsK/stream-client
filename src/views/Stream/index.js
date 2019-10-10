@@ -17,11 +17,15 @@ class Component extends React.Component {
       }))
     } catch (error) {
       console.error(error)
-      this.props.webSocket.send(JSON.stringify({
-        type: "status", status: "",
-      }))
-      this.props.clearStatus()
+      this.stopCapture()
     }
+  }
+
+  stopCapture = () => {
+    this.props.webSocket.send(JSON.stringify({
+      type: "status", status: "",
+    }))
+    this.props.clearStatus()
   }
 
   componentDidMount() {
@@ -31,11 +35,17 @@ class Component extends React.Component {
   componentDidUpdate() {
     this.videoRef.current.srcObject = this.props.stream
   }
+  componentWillUnmount() {
+    const tracks = this.props.stream.getTracks()
+    tracks.forEach(track => track.stop())
+  }
 
   render() {
     return <div className="column">
       <h2 className="textlarge"
       >Broadcasting as {this.props.devicename}</h2>
+      <button className="button" onClick={this.stopCapture}
+      >Stop</button>
       <Connection list={true} />
       <video className="video" ref={this.videoRef} autoPlay controls />
     </div>
