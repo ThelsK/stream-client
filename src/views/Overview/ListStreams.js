@@ -13,8 +13,15 @@ class Component extends React.Component {
   }
 
   render() {
+    if (!this.props.streams.length) {
+      return <div className="column">
+        <h2 className="textlarge">Watch</h2>
+        <p>None of your devices are currently broadcasting.</p>
+      </div>
+    }
+
     return <div className="column">
-      <h2>Streaming devices:</h2>
+      <h2 className="textlarge">Watch</h2>
       {this.props.streams.map((stream, index) =>
         <ListEntry key={index} devicename={stream} watch={this.watch} />
       )}

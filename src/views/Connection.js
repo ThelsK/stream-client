@@ -152,7 +152,19 @@ class Component extends React.Component {
   }
 
   render() {
-    return null
+    if (!this.props.list) {
+      return null
+    }
+    if (!this.connections.length) {
+      return <p>None of your devices are currently watching you.</p>
+    }
+    return <div className="column">
+      <p>The following devices are watching you:</p>
+      <ul>
+        {this.connections.map((connection, index) =>
+          <li key={index}>{connection.otherDevicename}</li>)}
+      </ul>
+    </div>
   }
 }
 

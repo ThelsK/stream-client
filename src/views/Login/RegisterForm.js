@@ -18,6 +18,7 @@ class Component extends React.Component {
 
   render() {
     return <form className="column" onSubmit={this.onSubmit}>
+      <h2 className="textlarge">Register</h2>
       <Label
         text="Username:"
         type="text"

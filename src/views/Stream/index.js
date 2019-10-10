@@ -33,16 +33,19 @@ class Component extends React.Component {
   }
 
   render() {
-    return <div className="page">
-      <Connection />
-      <h2>Streaming data</h2>
+    return <div className="column">
+      <h2 className="textlarge"
+      >Broadcasting as {this.props.devicename}</h2>
+      <Connection list={true} />
       <video className="video" ref={this.videoRef} autoPlay controls />
     </div>
   }
 }
 
 const mapStateToProps = state => ({
-  stream: state.stream, webSocket: state.webSocket
+  stream: state.stream,
+  webSocket: state.webSocket,
+  devicename: state.devicename,
 })
 
 const mapDispatchToProps = { clearStatus, setStream, clearStream }

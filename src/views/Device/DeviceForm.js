@@ -18,6 +18,10 @@ class Component extends React.Component {
 
   render() {
     return <form className="column" onSubmit={this.onSubmit}>
+      <h2 className="textlarge">Device</h2>
+      <p>Please provide a simple name for this device.</p>
+      <p>The name must be unique among your connected devices.</p>
+      <p>This will help you to determine which device to watch.</p>
       <Label
         text="Devicename:"
         type="text"
@@ -29,9 +33,7 @@ class Component extends React.Component {
         required={true}
         onChange={this.onChange}
       />
-      <div className="buttonbox">
-        <button className="button">Submit</button>
-      </div>
+      <button className="button">Submit</button>
     </form >
   }
 }

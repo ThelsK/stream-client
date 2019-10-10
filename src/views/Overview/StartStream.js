@@ -10,10 +10,8 @@ class Component extends React.Component {
 
   render() {
     return <div className="column">
-      <h2>Stream from this device:</h2>
-      <button onClick={this.start}>
-        Start
-      </button>
+      <h2 className="textlarge">Broadcast</h2>
+      <button className="button wide" onClick={this.start}>Start</button>
     </div>
   }
 }

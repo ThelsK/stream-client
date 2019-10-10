@@ -18,6 +18,7 @@ class Component extends React.Component {
 
   render() {
     return <form className="column" onSubmit={this.onSubmit}>
+      <h2 className="textlarge">Login</h2>
       <Label
         text="Username:"
         type="text"
@@ -40,9 +41,7 @@ class Component extends React.Component {
         required={true}
         onChange={this.onChange}
       />
-      <div className="buttonbox">
-        <button className="button">Log in</button>
-      </div>
+      <button className="button">Log in</button>
     </form >
   }
 }

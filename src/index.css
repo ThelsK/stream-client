@@ -1,36 +1,100 @@
-body {
+* {
+  border-radius: 0;
+  color: #FFFF7F;
+  flex: 0 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  padding: 0;
+  text-decoration: none;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.main {
+  background-color: #3F3F3F;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.App {
+.message {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.page {
+  margin: 1rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.column {
+  margin: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.label {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 0.5rem;
+}
+
+.input {
+  background-color: #000000;
+  margin: 0.25rem 0 0.25rem 0;
+  padding: 0.25rem;
+  width: 15rem;
+}
+
+.input:focus,
+.input:hover {
+  border-color: #FFFF7F;
+}
+
+.button {
+  background-color: #000000;
+  border: 2px solid #FFFF7F;
+  box-sizing: content-box;
+  font-size: 1.5rem;
+  margin: 0.25rem;
+  min-width: 2rem;
+  outline: none;
+  padding: 0.5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.wide {
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.button:focus,
+.button:hover {
+  background-color: #BFBF5F;
+  color: #000000;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #09d3ac;
+.textlarge {
+  font-size: 2rem;
+  margin: 0;
+  padding: 0.5em;
+  overflow: hidden;
+  text-align: center;
 }

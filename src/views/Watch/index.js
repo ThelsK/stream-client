@@ -15,9 +15,9 @@ class Component extends React.Component {
   }
 
   render() {
-    return <div className="page">
+    return <div className="column">
       <Connection />
-      <h2>Watching data</h2>
+      <h2 className="textlarge">Watching {this.props.hostdevice}</h2>
       <video className="video" ref={this.videoRef} autoPlay controls />
     </div>
   }
