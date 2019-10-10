@@ -13,12 +13,12 @@ class Component extends React.Component {
       // Start a new connection.
       const connection = new RTCPeerConnection({
         iceServers: [
-          // {
-          //   urls: [
-          //     "stun:stun3.1.google.com:19302",
-          //     "stun:stun4.1.google.com:19302",
-          //   ],
-          // },
+          {
+            urls: [
+              "stun:stun3.1.google.com:19302",
+              "stun:stun4.1.google.com:19302",
+            ],
+          },
         ],
       })
 
@@ -72,12 +72,14 @@ class Component extends React.Component {
     // If no connection exists, start a new connection.
     if (!connection) {
       connection = new RTCPeerConnection({
-        iceServers: [{
-          urls: [
-            "stun:stun3.l.google.com:19302",
-            "stun:stun4.l.google.com:19302",
-          ],
-        },],
+        iceServers: [
+          {
+            urls: [
+              "stun:stun3.1.google.com:19302",
+              "stun:stun4.1.google.com:19302",
+            ],
+          },
+        ],
       })
 
       // Store the linked username in the connection.
