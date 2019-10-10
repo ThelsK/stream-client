@@ -47,11 +47,11 @@ class Component extends React.Component {
 
       // Establish a connection offer.
       connection.createOffer(offer => {
-        connection.setLocalDescription(offer)
         this.props.webSocket.send(JSON.stringify({
           type: "target", target: connection.otherDevicename,
           payload: { type: "offer", offer }
         }))
+        connection.setLocalDescription(offer)
       }, console.error, { offerToReceiveVideo: true })
 
       // Add the connection to the list of connections.
