@@ -5,7 +5,7 @@ export default props =>
     <h2 className="textlarge">
       The server has closed the connection.
     </h2>
-    <button onClick={props.reconnect}>
+    <button className="button" onClick={props.reconnect}>
       Reconnect
     </button>
   </div>
