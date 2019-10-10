@@ -37,6 +37,12 @@ class Component extends React.Component {
       // Handle ICE candidates.
       connection.onicecandidate = event => {
         console.log("ICE Candidate:", event)
+        if (event.candidate) {
+          this.props.webSocket.send(JSON.stringify({
+            type: "target", target: connection.otherDevicename,
+            payload: { type: "candidate", candidate: event.candidate }
+          }))
+        }
       }
 
       // Establish a connection offer.
