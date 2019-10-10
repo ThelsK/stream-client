@@ -36,12 +36,14 @@ class Component extends React.Component {
       // Handle ICE candidates.
       connection.onicecandidate = event => {
         if (event.candidate) {
-          console.log("Sending ICE candidate:", event.candidate)
-          this.props.webSocket.send(JSON.stringify({
-            type: "target", target: connection.otherDevicename,
-            payload: { type: "candidate", candidate: event.candidate }
-          }))
-          console.log("Connection:", connection)
+          setTimeout(() => {
+            console.log("Sending ICE candidate:", event.candidate)
+            this.props.webSocket.send(JSON.stringify({
+              type: "target", target: connection.otherDevicename,
+              payload: { type: "candidate", candidate: event.candidate }
+            }))
+            console.log("Connection:", connection)
+          }, 1000)
         }
       }
 
@@ -95,12 +97,14 @@ class Component extends React.Component {
       // Handle ICE candidates.
       connection.onicecandidate = event => {
         if (event.candidate) {
-          console.log("Sending ICE candidate:", event.candidate)
-          this.props.webSocket.send(JSON.stringify({
-            type: "target", target: connection.otherDevicename,
-            payload: { type: "candidate", candidate: event.candidate }
-          }))
-          console.log("Connection:", connection)
+          setTimeout(() => {
+            console.log("Sending ICE candidate:", event.candidate)
+            this.props.webSocket.send(JSON.stringify({
+              type: "target", target: connection.otherDevicename,
+              payload: { type: "candidate", candidate: event.candidate }
+            }))
+            console.log("Connection:", connection)
+          }, 1000)
         }
       }
 
