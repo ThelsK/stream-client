@@ -13,12 +13,12 @@ class Component extends React.Component {
       // Start a new connection.
       const connection = new RTCPeerConnection({
         iceServers: [
-          {
-            urls: [
-              "stun:stun3.1.google.com:19302",
-              "stun:stun4.1.google.com:19302",
-            ],
-          },
+          // {
+          //   urls: [
+          //     "stun:stun3.1.google.com:19302",
+          //     "stun:stun4.1.google.com:19302",
+          //   ],
+          // },
         ],
       })
 
@@ -72,12 +72,12 @@ class Component extends React.Component {
     if (!connection) {
       connection = new RTCPeerConnection({
         iceServers: [
-          {
-            urls: [
-              "stun:stun3.1.google.com:19302",
-              "stun:stun4.1.google.com:19302",
-            ],
-          },
+          // {
+          //   urls: [
+          //     "stun:stun3.1.google.com:19302",
+          //     "stun:stun4.1.google.com:19302",
+          //   ],
+          // },
         ],
       })
 
@@ -112,6 +112,8 @@ class Component extends React.Component {
 
       case "offer":
         console.log("Received offer")
+        connection.setRemoteDescription(new RTCSessionDescription(
+          this.props.signal.offer))
         connection.createAnswer(answer => {
           this.props.webSocket.send(JSON.stringify({
             type: "target", target: connection.otherDevicename,
@@ -119,8 +121,6 @@ class Component extends React.Component {
           }))
           connection.setLocalDescription(answer)
         }, console.error)
-        connection.setRemoteDescription(new RTCSessionDescription(
-          this.props.signal.offer))
         this.props.clearSignal()
         console.log("Connection:", connection)
         return
