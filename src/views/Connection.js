@@ -12,12 +12,14 @@ class Component extends React.Component {
 
       // Start a new connection.
       const connection = new RTCPeerConnection({
-        iceServers: [{
-          // urls: [
-          //   "stun:stun3.1.google.com:19302",
-          //   "stun:stun4.1.google.com:19302",
-          // ],
-        },],
+        iceServers: [
+          // {
+          //   urls: [
+          //     "stun:stun3.1.google.com:19302",
+          //     "stun:stun4.1.google.com:19302",
+          //   ],
+          // },
+        ],
       })
 
       // Store the linked username in the connection.
